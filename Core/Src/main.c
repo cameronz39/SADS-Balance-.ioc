@@ -22,7 +22,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
-#include <stepperControl_wrapper.h>
+#include <stepperControl.h>
+// #include <stepperControl_wrapper.h>
 #include <string.h>
 #include "MTi.h"
 /* USER CODE END Includes */
@@ -101,12 +102,10 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  MTi_init();
-  HAL_Delay(5000);
-  stepperControl_init_wrapper();
-  stepperControl_home_wrapper();
-
-  MTi_goToMeasurement();
+  // stepperControl_init_wrapper();
+  stepperControl_init();
+  // MTi_init();
+  // MTi_goToMeasurement();
 
   float measurements[3];
   float roll;
@@ -114,6 +113,7 @@ int main(void)
   float yaw;
   int len;
   char g_textBuffer[80];
+  MTi_reset();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -131,8 +131,8 @@ int main(void)
 //	len = snprintf(g_textBuffer, sizeof(g_textBuffer), "XMID_MtData2: roll = %.2f, pitch = %.2f, yaw = %.2f\n", roll , pitch, yaw);
 //	HAL_UART_Transmit(&huart2, (uint8_t*)g_textBuffer, len, 100);
 
-	setStepperDesiredPos(0, 12*(int)roll);
-	setStepperDesiredPos(1, 12*(int)pitch);
+	motor1.desiredPos = 12*(int)roll;
+	motor2.desiredPos = 12*(int)pitch;
   }
   /* USER CODE END 3 */
 }

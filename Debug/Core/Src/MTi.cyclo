@@ -1,3 +1,4 @@
 ../Core/Src/MTi.c:28:6:MTi_init	12
 ../Core/Src/MTi.c:111:6:MTi_goToMeasurement	1
-../Core/Src/MTi.c:120:6:MTi_step	9
+../Core/Src/MTi.c:120:6:MTi_reset	1
+../Core/Src/MTi.c:126:6:MTi_step	9

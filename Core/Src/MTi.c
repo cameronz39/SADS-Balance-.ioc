@@ -117,6 +117,12 @@ void MTi_goToMeasurement() {
 	HAL_I2C_Master_Transmit(&hi2c1, (MTI_I2C_DEVICE_ADDRESS << 1), (uint8_t*)buffer, rawLength, 100);
 }
 
+void MTi_reset() {
+	HAL_GPIO_WritePin(RESET_PORT, RESET_PIN, GPIO_PIN_SET);
+	HAL_Delay(100);
+	HAL_GPIO_WritePin(RESET_PORT, RESET_PIN, GPIO_PIN_RESET);
+}
+
 void MTi_step(float *anglesBuffer, size_t bufferLength) {
     // Ensure the provided buffer is large enough (needs at least 3 floats).
     if (bufferLength < 3) {
@@ -133,6 +139,9 @@ void MTi_step(float *anglesBuffer, size_t bufferLength) {
         notificationMessageSize = status[0] | (status[1] << 8);
         measurementMessageSize    = status[2] | (status[3] << 8);
     }
+
+//	int len = snprintf(UART_buffer, sizeof(UART_buffer), "Notification: %d, Measurement: %d\n",notificationMessageSize,measurementMessageSize);
+//	HAL_UART_Transmit(&huart2, (uint8_t *)UART_buffer, len, 10000);
 
     if (measurementMessageSize && measurementMessageSize < sizeof(m_dataBuffer)) {
         if (checkDataReadyLineMain()) {

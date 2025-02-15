@@ -1,5 +1,5 @@
 Core/Src/stepperControl.o: ../Core/Src/stepperControl.cpp \
- ../Core/Inc/stepperControl.hpp ../Core/Inc/main.h \
+ ../Core/Inc/stepperControl.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -35,7 +35,7 @@ Core/Src/stepperControl.o: ../Core/Src/stepperControl.cpp \
  ../Core/Inc/TimerArrayInc/TimerArrayControl.hpp \
  ../Core/Inc/TimerArrayInc/CallbackChain.hpp \
  ../Core/Inc/TimerArrayInc/Timer.hpp
-../Core/Inc/stepperControl.hpp:
+../Core/Inc/stepperControl.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:

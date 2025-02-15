@@ -17,5 +17,6 @@
 void MTi_init();
 void MTi_goToMeasurement();
 void MTi_step();
+void MTi_reset();
 
 #endif /* INC_MTI_H_ */

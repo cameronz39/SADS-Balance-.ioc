@@ -2,19 +2,24 @@
 #define INC_STEPPERCONTROL_H_
 
 #include "main.h"
-#include "TimerArrayInc/STM32TimerArray.hpp"
+#include <stdio.h>
+#include <string.h>
+// #include <cstring>
+// #include <cstdio>
 
-#include <cstring>
-#include <cstdio>
-
-
-
-const int STEPS_PER_REV = 800;
-const int HOMING_STEPS_REQ = STEPS_PER_REV*9;
+#define GPIO_SET_PIN(port, pin)     ((port)->BSRR = (pin))
+#define GPIO_CLEAR_PIN(port, pin)     ((port)->BSRR = (pin << 16u))
 
 // Function prototypes and variables can use C++ linkage now.
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void stepperControl_init();
-void home();
+
+#ifdef __cplusplus
+}
+#endif
 
 typedef struct {
     // GPIO information
@@ -27,7 +32,10 @@ typedef struct {
     volatile int currentPos;   // current step count
     volatile int desiredPos;   // target step count
     // Timer for stepping (assume your Timer library supports a context pointer)
-    Timer *stepTimer;
+    // Timer *stepTimer;
 } StepperMotor;
+
+extern StepperMotor motor1;
+extern StepperMotor motor2;
 
 #endif
